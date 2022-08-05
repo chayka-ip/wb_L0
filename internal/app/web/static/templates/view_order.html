@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {{if not .IsValid}}
+    <title>Order not found</title>
+    <body>
+      <h1>404 Order not found</h1>
+    </body>
+    {{else}}
+    <title>Order {{.OrderUID}}</title>
+    <body>
+      <div class="main-tables">
+        <table class="bt order">
+          <caption>Order info</caption>
+          <tr>
+            <th>Order UID</th>
+            <td>{{.Data.OrderUID}}</td>
+          </tr>
+          <tr>
+            <th>Track number</th>
+            <td>{{.Data.TrackNumber}}</td>
+          </tr>
+          <tr>
+            <th>Entry</th>
+            <td>{{.Data.Entry}}</td>
+          </tr>
+          <tr>
+            <th>Locale</th>
+            <td>{{.Data.Locale}}</td>
+          </tr>
+          <tr>
+            <th>Internal Signature</th>
+            <td>{{.Data.Internal_Signature}}</td>
+          </tr>
+          <tr>
+            <th>Customer ID</th>
+            <td>{{.Data.CustomerId}}</td>
+          </tr>
+          <tr>
+            <th>Delivery Service</th>
+            <td>{{.Data.DeliveryService}}</td>
+          </tr>
+          <tr>
+            <th>Shard key</th>
+            <td>{{.Data.Shardkey}}</td>
+          </tr>
+          <tr>
+            <th>SM ID</th>
+            <td>{{.Data.SmId}}</td>
+          </tr>
+          <tr>
+            <th>Date created</th>
+            <td>{{.Data.DateCreated}}</td>
+          </tr>
+          <tr>
+            <th>OOF shard</th>
+            <td>{{.Data.OofShard}}</td>
+          </tr>
+        </table>
+        <table  class="bt payment">
+          <caption>Payment info</caption>
+          <tr>
+            <th>Transaction</th>
+            <td>{{.Data.Payment.Transaction}}</td>
+          </tr>
+          <tr>
+            <th>Request ID</th>
+            <td>{{.Data.Payment.RequestId}}</td>
+          </tr>
+          <tr>
+            <th>Currency</th>
+            <td>{{.Data.Payment.Currency}}</td>
+          </tr>
+          <tr>
+            <th>Provider</th>
+            <td>{{.Data.Payment.Provider}}</td>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <td>{{.Data.Payment.Amount}}</td>
+          </tr>
+          <tr>
+            <th>Payment Dt</th>
+            <td>{{.Data.Payment.PaymentDt}}</td>
+          </tr>
+          <tr>
+            <th>Bank</th>
+            <td>{{.Data.Payment.Bank}}</td>
+          </tr>
+          <tr>
+            <th>Delivery Cost</th>
+            <td>{{.Data.Payment.DeliveryCost}}</td>
+          </tr>
+          <tr>
+            <th>Goods Total</th>
+            <td>{{.Data.Payment.GoodsTotal}}</td>
+          </tr>
+          <tr>
+            <th>Custom Fee</th>
+            <td>{{.Data.Payment.CustomFee}}</td>
+          </tr>
+        </table>
+        <table  class="bt delivery">
+          <caption>Delivery info</caption>
+          <tr>
+            <th>Name</th>
+            <td>{{.Data.Delivery.Name}}</td>
+          </tr>
+          <tr>
+            <th>Phone</th>
+            <td>{{.Data.Delivery.Phone}}</td>
+          </tr>
+          <tr>
+            <th>Zip code</th>
+            <td>{{.Data.Delivery.Zip}}</td>
+          </tr>
+          <tr>
+            <th>City</th>
+            <td>{{.Data.Delivery.City}}</td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td>{{.Data.Delivery.Address}}</td>
+          </tr>
+          <tr>
+            <th>Region</th>
+            <td>{{.Data.Delivery.Region}}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{.Data.Delivery.Email}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="items">
+        <table class="item">
+          <caption>Items</caption>
+          <tr>
+            <th class="item-tc">Chrt ID</th>
+            <th class="item-tc">Name</th>
+            <th class="item-tc">Brand</th>
+            <th class="item-tc">Track Number</th>
+            <th class="item-tc">Price</th>
+            <th class="item-tc">Sale</th>
+            <th class="item-tc">Total Price</th>
+            <th class="item-tc">Size</th>
+            <th class="item-tc">RID</th>
+            <th class="item-tc">NM ID</th>
+            <th class="item-tc">Status</th>
+          </tr>
+          {{range $val := .Data.Items}}
+          <tr>
+            <td class="item-tc">{{$val.ChrtId}}</td>
+            <td class="item-tc">{{$val.Name}}</td>
+            <td class="item-tc">{{$val.Brand}}</td>
+            <td class="item-tc">{{$val.TrackNumber}}</td>
+            <td class="item-tc">{{$val.Price}}</td>
+            <td class="item-tc">{{$val.Sale}}</td>
+            <td class="item-tc">{{$val.TotalPrice}}</td>
+            <td class="item-tc">{{$val.Size}}</td>
+            <td class="item-tc">{{$val.Rid}}</td>
+            <td class="item-tc">{{$val.NmId}}</td>
+            <td class="item-tc">{{$val.Status}}</td>
+          {{end}}
+        </table>
+      </div>
+    </body>
+    {{end}}
+    <style>
+      body{
+        font:400 17px 'Calibri','Arial';
+        background-color: #ffccfc17;
+      }
+      caption {
+        font-weight: bolder;
+        font-size: larger;
+        background: #ffa4e5
+      }
+      table {
+        margin-right: 5%;
+      }
+      th{ 
+        background:#ffa4e5;
+      }
+      table.bt{
+        vertical-align: top;
+        display: inline-block
+      }
+      th, td {
+        text-align: left;
+        padding: 4px;
+      }
+      td {
+        text-align: center;
+      }
+      td {
+        background-color: rgb(254, 202, 255);
+      }
+      div.main-tables{
+        margin-top: 2rem;
+        margin-left: 2rem;
+      }
+      div.items{
+        margin-top: 2rem;
+        margin-left: 2rem;
+      }
+      table.item{
+        margin-top: 1rem;
+        display: inline-block;
+      }
+      td.item-tc, th.item-tc {
+        text-align: center;
+        padding: 4px;
+      }
+    </style>
+  </head>
+</html>

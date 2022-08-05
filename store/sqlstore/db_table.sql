@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS Orders (
+    order_uid VARCHAR(255) PRIMARY KEY NOT NULL,
+    data JSON NOT NULL
+);

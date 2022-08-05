@@ -1,0 +1,11 @@
+bind_addr = ":8080"
+log_level = "debug"
+database_url = "user=postgres password=postgres host=localhost dbname=orders_db port=5432 sslmode=disable"
+cache_size = 1000
+nats_cluster_id = "order-cluster"
+nats_client_id = "service-nats-id"
+
+nats_publisher_id = "publisher-nats-id"
+pub_work_time = 5.0 # time seconds
+pub_send_rate = 20 # messages per second
+bad_data_chance = 0.25 # probability  to get bad data from publisher
